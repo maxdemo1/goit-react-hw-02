@@ -1,10 +1,10 @@
-const Options = ({ updateFeedback, resetRating, summaryRating }) => {
+const Options = ({ handleFeedback, resetRating, summaryRating }) => {
   return (
     <div>
       <button
         type="button"
         onClick={() => {
-          updateFeedback('good');
+          handleFeedback('good');
         }}
       >
         Good
@@ -12,7 +12,7 @@ const Options = ({ updateFeedback, resetRating, summaryRating }) => {
       <button
         type="button"
         onClick={() => {
-          updateFeedback('neutral');
+          handleFeedback('neutral');
         }}
       >
         Neutral
@@ -20,7 +20,7 @@ const Options = ({ updateFeedback, resetRating, summaryRating }) => {
       <button
         type="button"
         onClick={() => {
-          updateFeedback('bad');
+          handleFeedback('bad');
         }}
       >
         Bad

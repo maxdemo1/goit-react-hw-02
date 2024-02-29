@@ -11,7 +11,7 @@ function App() {
     bad: 0,
   });
 
-  const updateFeedback = feedbackType => {
+  const handleFeedback = feedbackType => {
     setRating(prevState => {
       return {
         ...prevState,
@@ -46,7 +46,7 @@ function App() {
     <div>
       <Description />
       <Options
-        updateFeedback={updateFeedback}
+        handleFeedback={handleFeedback}
         resetRating={resetRating}
         summaryRating={totalFeedback}
       />
