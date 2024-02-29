@@ -20,7 +20,7 @@ function App() {
     });
   };
 
-  const resetRating = () => {
+  const handleResetRating = () => {
     setRating({
       good: 0,
       neutral: 0,
@@ -47,7 +47,7 @@ function App() {
       <Description />
       <Options
         handleFeedback={handleFeedback}
-        resetRating={resetRating}
+        handleResetRating={handleResetRating}
         summaryRating={totalFeedback}
       />
       {totalFeedback > 0 ? (

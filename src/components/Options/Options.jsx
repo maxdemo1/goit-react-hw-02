@@ -1,4 +1,4 @@
-const Options = ({ handleFeedback, resetRating, summaryRating }) => {
+const Options = ({ handleFeedback, handleResetRating, summaryRating }) => {
   return (
     <div>
       <button
@@ -26,7 +26,7 @@ const Options = ({ handleFeedback, resetRating, summaryRating }) => {
         Bad
       </button>
       {summaryRating > 0 ? (
-        <button type="button" onClick={resetRating}>
+        <button type="button" onClick={handleResetRating}>
           Reset
         </button>
       ) : null}
