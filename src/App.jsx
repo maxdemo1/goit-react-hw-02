@@ -41,14 +41,9 @@ function App() {
   const avarageRate = Math.round(((good + neutral) / totalFeedback) * 100);
 
   useEffect(() => {
-    if (JSON.parse(localStorage.getItem('currentFeedback')) === null) return;
-    setRating({ ...JSON.parse(localStorage.getItem('currentFeedback')) });
-  }, []);
-
-  useEffect(() => {
     if (totalFeedback === 0) return;
     localStorage.setItem('currentFeedback', JSON.stringify(rating));
-  }, [rating, totalFeedback]);
+  }, [rating]);
 
   return (
     <div>
