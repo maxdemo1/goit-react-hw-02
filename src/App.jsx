@@ -5,11 +5,15 @@ import Options from './components/Options/Options';
 import Notification from './components/Notification/Notification';
 
 function App() {
-  const [rating, setRating] = useState({
-    good: 0,
-    neutral: 0,
-    bad: 0,
-  });
+  const [rating, setRating] = useState(
+    localStorage.getItem('currentFeedback')
+      ? JSON.parse(localStorage.getItem('currentFeedback'))
+      : {
+          good: 0,
+          neutral: 0,
+          bad: 0,
+        }
+  );
 
   const handleFeedback = feedbackType => {
     setRating(prevState => {
@@ -21,16 +25,20 @@ function App() {
   };
 
   const handleResetRating = () => {
-    setRating({
-      good: 0,
-      neutral: 0,
-      bad: 0,
-    });
-    localStorage.removeItem('currentFeedback');
+    localStorage.setItem(
+      'currentFeedback',
+      JSON.stringify({
+        good: 0,
+        neutral: 0,
+        bad: 0,
+      })
+    );
+    setRating(JSON.parse(localStorage.getItem('currentFeedback')));
   };
 
   const { good, neutral, bad } = rating;
   const totalFeedback = good + neutral + bad;
+  const avarageRate = Math.round(((good + neutral) / totalFeedback) * 100);
 
   useEffect(() => {
     if (JSON.parse(localStorage.getItem('currentFeedback')) === null) return;
@@ -51,7 +59,11 @@ function App() {
         summaryRating={totalFeedback}
       />
       {totalFeedback > 0 ? (
-        <Feedback rating={rating} totalFeedback={totalFeedback} />
+        <Feedback
+          rating={rating}
+          totalFeedback={totalFeedback}
+          avarageRate={avarageRate}
+        />
       ) : (
         <Notification />
       )}
