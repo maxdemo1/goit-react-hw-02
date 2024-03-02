@@ -25,23 +25,18 @@ function App() {
   };
 
   const handleResetRating = () => {
-    localStorage.setItem(
-      'currentFeedback',
-      JSON.stringify({
-        good: 0,
-        neutral: 0,
-        bad: 0,
-      })
-    );
-    setRating(JSON.parse(localStorage.getItem('currentFeedback')));
+    setRating({
+      good: 0,
+      neutral: 0,
+      bad: 0,
+    });
   };
 
   const { good, neutral, bad } = rating;
   const totalFeedback = good + neutral + bad;
-  const avarageRate = Math.round(((good + neutral) / totalFeedback) * 100);
+  const averageRate = Math.round(((good + neutral) / totalFeedback) * 100);
 
   useEffect(() => {
-    if (totalFeedback === 0) return;
     localStorage.setItem('currentFeedback', JSON.stringify(rating));
   }, [rating]);
 
@@ -57,7 +52,7 @@ function App() {
         <Feedback
           rating={rating}
           totalFeedback={totalFeedback}
-          avarageRate={avarageRate}
+          averageRate={averageRate}
         />
       ) : (
         <Notification />
